@@ -29,6 +29,23 @@ st.markdown("""
 /* ── Base ── */
 html, body, [class*="css"] { font-family: 'Inter', -apple-system, sans-serif !important; }
 #MainMenu, footer, header { visibility: hidden; }
+
+/* ── Sidebar collapse / expand button ── */
+[data-testid="collapsedControl"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #0f2040 !important;
+    border: 1px solid #1a3a5c !important;
+    border-radius: 0 8px 8px 0 !important;
+    color: #4f8ef7 !important;
+    width: 24px !important;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.4) !important;
+}
+[data-testid="collapsedControl"]:hover {
+    background: #1a3a5c !important;
+    color: #7ab3ff !important;
+}
 .block-container { padding: 1.5rem 2rem 2rem !important; max-width: 1400px; }
 
 /* ── App Background ── */
