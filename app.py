@@ -46,14 +46,34 @@ html, body, [class*="css"] { font-family: 'Inter', -apple-system, sans-serif !im
 #MainMenu, footer, header   { visibility: hidden; }
 .block-container { padding: 1.8rem 2.2rem 2.5rem !important; max-width: 1380px; }
 
-/* ── Sidebar expand button ── */
+/* ── Sidebar toggle — both collapse AND expand handles ── */
+[data-testid="collapsedControl"],
+[data-testid="collapsedControl"] > button,
+button[kind="header"],
+[data-testid="baseButton-headerNoPadding"] {
+    display:    flex       !important;
+    visibility: visible    !important;
+    opacity:    1          !important;
+    z-index:    999999     !important;
+    position:   relative   !important;
+    color:      #a78bfa    !important;
+}
 [data-testid="collapsedControl"] {
-    display: flex !important; visibility: visible !important; opacity: 1 !important;
-    background: #1c1929 !important; border: 1px solid #2e2a42 !important;
-    border-radius: 0 8px 8px 0 !important; color: #a78bfa !important;
-    width: 24px !important; box-shadow: 2px 0 10px rgba(0,0,0,0.5) !important;
+    background:    #1c1929                    !important;
+    border:        1px solid #2e2a42          !important;
+    border-radius: 0 10px 10px 0             !important;
+    min-width:     28px                       !important;
+    box-shadow:    3px 0 12px rgba(0,0,0,.6) !important;
 }
 [data-testid="collapsedControl"]:hover { background: #2e2a42 !important; }
+/* Arrow icon inside the button */
+[data-testid="collapsedControl"] svg,
+[data-testid="baseButton-headerNoPadding"] svg {
+    fill:       #a78bfa !important;
+    color:      #a78bfa !important;
+    visibility: visible !important;
+    opacity:    1       !important;
+}
 
 /* ── App background ── */
 .stApp {
