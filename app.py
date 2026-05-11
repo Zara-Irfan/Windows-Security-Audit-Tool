@@ -46,37 +46,20 @@ html, body, [class*="css"] { font-family: 'Inter', -apple-system, sans-serif !im
 #MainMenu, footer, header   { visibility: hidden; }
 .block-container { padding: 1.8rem 2.2rem 2.5rem !important; max-width: 1380px; }
 
-/* ── Sidebar toggle — pinned visible tab on left edge ── */
-[data-testid="collapsedControl"] {
-    position:      fixed             !important;
-    left:          0                 !important;
-    top:           50%               !important;
-    transform:     translateY(-50%)  !important;
-    z-index:       9999999           !important;
-    display:       flex              !important;
-    align-items:   center            !important;
-    justify-content: center          !important;
-    visibility:    visible           !important;
-    opacity:       1                 !important;
-    background:    #7c3aed           !important;
-    border:        2px solid #a78bfa !important;
-    border-left:   none              !important;
-    border-radius: 0 12px 12px 0    !important;
-    width:         28px              !important;
-    height:        56px              !important;
-    box-shadow:    4px 0 16px rgba(124,58,237,0.5) !important;
-    cursor:        pointer           !important;
+/* ── Force sidebar always visible — never let it collapse ── */
+section[data-testid="stSidebar"] {
+    min-width:  258px                     !important;
+    max-width:  258px                     !important;
+    transform:  translateX(0)             !important;
+    display:    flex                      !important;
+    visibility: visible                   !important;
+    opacity:    1                         !important;
+    transition: none                      !important;
 }
-[data-testid="collapsedControl"]:hover {
-    background: #a78bfa !important;
-    width:      34px    !important;
-}
-[data-testid="collapsedControl"] svg,
-[data-testid="collapsedControl"] * {
-    color:      #fff !important;
-    fill:       #fff !important;
-    visibility: visible !important;
-    opacity:    1       !important;
+/* Hide the collapse/expand toggle — sidebar is always open */
+[data-testid="collapsedControl"],
+[data-testid="baseButton-headerNoPadding"] {
+    display: none !important;
 }
 
 /* ── App background ── */
@@ -388,41 +371,6 @@ def _can_fix(f: dict) -> bool:
         return can_fix(f)
     except Exception:
         return False
-
-# ── Floating sidebar toggle button (works when sidebar is collapsed) ──────────
-st.markdown("""
-<div id="ss-open-btn" title="Open menu" onclick="
-    var t = window.parent.document.querySelector('[data-testid=collapsedControl]');
-    if (t) { t.click(); }
-    else {
-        var t2 = window.parent.document.querySelector('button[data-testid=baseButton-headerNoPadding]');
-        if (t2) t2.click();
-    }
-">☰</div>
-<style>
-#ss-open-btn {
-    position: fixed;
-    left: 10px;
-    top: 14px;
-    z-index: 9999999;
-    width: 38px;
-    height: 38px;
-    background: #7c3aed;
-    color: #fff;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(124,58,237,0.5);
-    user-select: none;
-    transition: background 0.15s, transform 0.1s;
-}
-#ss-open-btn:hover  { background: #a78bfa; transform: scale(1.07); }
-#ss-open-btn:active { transform: scale(0.96); }
-</style>
-""", unsafe_allow_html=True)
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
