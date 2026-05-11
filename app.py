@@ -389,6 +389,41 @@ def _can_fix(f: dict) -> bool:
     except Exception:
         return False
 
+# ── Floating sidebar toggle button (works when sidebar is collapsed) ──────────
+st.markdown("""
+<div id="ss-open-btn" title="Open menu" onclick="
+    var t = window.parent.document.querySelector('[data-testid=collapsedControl]');
+    if (t) { t.click(); }
+    else {
+        var t2 = window.parent.document.querySelector('button[data-testid=baseButton-headerNoPadding]');
+        if (t2) t2.click();
+    }
+">☰</div>
+<style>
+#ss-open-btn {
+    position: fixed;
+    left: 10px;
+    top: 14px;
+    z-index: 9999999;
+    width: 38px;
+    height: 38px;
+    background: #7c3aed;
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(124,58,237,0.5);
+    user-select: none;
+    transition: background 0.15s, transform 0.1s;
+}
+#ss-open-btn:hover  { background: #a78bfa; transform: scale(1.07); }
+#ss-open-btn:active { transform: scale(0.96); }
+</style>
+""", unsafe_allow_html=True)
+
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("""
