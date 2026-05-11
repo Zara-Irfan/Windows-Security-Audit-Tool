@@ -46,31 +46,35 @@ html, body, [class*="css"] { font-family: 'Inter', -apple-system, sans-serif !im
 #MainMenu, footer, header   { visibility: hidden; }
 .block-container { padding: 1.8rem 2.2rem 2.5rem !important; max-width: 1380px; }
 
-/* ── Sidebar toggle — both collapse AND expand handles ── */
-[data-testid="collapsedControl"],
-[data-testid="collapsedControl"] > button,
-button[kind="header"],
-[data-testid="baseButton-headerNoPadding"] {
-    display:    flex       !important;
-    visibility: visible    !important;
-    opacity:    1          !important;
-    z-index:    999999     !important;
-    position:   relative   !important;
-    color:      #a78bfa    !important;
-}
+/* ── Sidebar toggle — pinned visible tab on left edge ── */
 [data-testid="collapsedControl"] {
-    background:    #1c1929                    !important;
-    border:        1px solid #2e2a42          !important;
-    border-radius: 0 10px 10px 0             !important;
-    min-width:     28px                       !important;
-    box-shadow:    3px 0 12px rgba(0,0,0,.6) !important;
+    position:      fixed             !important;
+    left:          0                 !important;
+    top:           50%               !important;
+    transform:     translateY(-50%)  !important;
+    z-index:       9999999           !important;
+    display:       flex              !important;
+    align-items:   center            !important;
+    justify-content: center          !important;
+    visibility:    visible           !important;
+    opacity:       1                 !important;
+    background:    #7c3aed           !important;
+    border:        2px solid #a78bfa !important;
+    border-left:   none              !important;
+    border-radius: 0 12px 12px 0    !important;
+    width:         28px              !important;
+    height:        56px              !important;
+    box-shadow:    4px 0 16px rgba(124,58,237,0.5) !important;
+    cursor:        pointer           !important;
 }
-[data-testid="collapsedControl"]:hover { background: #2e2a42 !important; }
-/* Arrow icon inside the button */
+[data-testid="collapsedControl"]:hover {
+    background: #a78bfa !important;
+    width:      34px    !important;
+}
 [data-testid="collapsedControl"] svg,
-[data-testid="baseButton-headerNoPadding"] svg {
-    fill:       #a78bfa !important;
-    color:      #a78bfa !important;
+[data-testid="collapsedControl"] * {
+    color:      #fff !important;
+    fill:       #fff !important;
     visibility: visible !important;
     opacity:    1       !important;
 }
