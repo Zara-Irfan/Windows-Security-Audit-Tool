@@ -46,20 +46,22 @@ html, body, [class*="css"] { font-family: 'Inter', -apple-system, sans-serif !im
 #MainMenu, footer, header   { visibility: hidden; }
 .block-container { padding: 1.8rem 2.2rem 2.5rem !important; max-width: 1380px; }
 
-/* ── Force sidebar always visible — never let it collapse ── */
-section[data-testid="stSidebar"] {
-    min-width:  258px                     !important;
-    max-width:  258px                     !important;
-    transform:  translateX(0)             !important;
-    display:    flex                      !important;
-    visibility: visible                   !important;
-    opacity:    1                         !important;
-    transition: none                      !important;
-}
-/* Hide the collapse/expand toggle — sidebar is always open */
-[data-testid="collapsedControl"],
-[data-testid="baseButton-headerNoPadding"] {
+/* ── Prevent sidebar collapse entirely ── */
+/* Hide the collapse-sidebar button that lives inside the sidebar */
+button[data-testid="baseButton-headerNoPadding"],
+[data-testid="collapsedControl"] {
     display: none !important;
+}
+/* If somehow collapsed, force it back open */
+section[data-testid="stSidebar"],
+section[data-testid="stSidebar"][aria-expanded="false"],
+div[data-testid="stSidebar"] {
+    transform:  translateX(0)  !important;
+    min-width:  258px          !important;
+    width:      258px          !important;
+    display:    flex           !important;
+    visibility: visible        !important;
+    opacity:    1              !important;
 }
 
 /* ── App background ── */
